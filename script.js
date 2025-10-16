@@ -1,6 +1,6 @@
 // Theme colors
 const themeColor = "#AA2C72"; // your purple tone
-const accentColor = "#F7C8E0"; // soft pink accent
+const accentColor = "#D9D9D9"; // soft pink accent
 
 // Function to check password
 function checkPassword() {
@@ -55,7 +55,7 @@ function checkPassword() {
   button.style.fontWeight = "bold";
 
   button.onclick = () => {
-    const password = "Gem2025"; // set your password here
+    const password = "rainfall"; // set your password here
     if (input.value === password) {
       localStorage.setItem("lastAccess", now);
       document.body.removeChild(overlay);
