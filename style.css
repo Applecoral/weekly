@@ -1,85 +1,147 @@
+/* Reset and base styles for modern feel */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-  font-family: 'Poppins', sans-serif;
-  background-color: #f8f6f9;
-  color: #2b2b2b;
+  font-family: 'Georgia', serif; /* Elegant, affectionate serif for letter-like feel */
+  background: linear-gradient(to bottom, #fff0f5, #ffe4e1); /* Soft pastel pink gradient for warmth */
+  color: #4a4a4a; /* Gentle dark gray for readability */
+  line-height: 1.6;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  margin: 0;
-  transition: background-color 0.5s ease;
+  min-height: 100vh;
+  padding: 20px;
 }
 
+/* Container for centered, card-like layout */
+.container {
+  max-width: 800px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.9); /* Semi-transparent white for softness */
+  border-radius: 20px; /* Rounded corners for a gentle, modern touch */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  overflow: hidden;
+  padding: 40px;
+  position: relative;
+}
+
+/* Header styles – elegant and inviting */
 header {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 40px;
 }
 
-header h1 {
-  font-size: 1.8rem;
-  color: #7c3aed;
+#date {
+  font-size: 1.2em;
+  color: #d68fa3; /* Soft pink for date */
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+#title {
+  font-size: 2em;
+  color: #c06c84; /* Warm plum for title */
+  font-family: 'Arial', sans-serif; /* Clean sans-serif for modernity */
+  text-transform: uppercase;
   letter-spacing: 1px;
 }
 
-.date {
-  color: #999;
-  font-size: 0.9rem;
+/* Main content – affectionate letter styling */
+main {
+  position: relative;
 }
 
 section {
   display: none;
-  width: 90%;
-  max-width: 600px;
-  text-align: left;
-  line-height: 1.7;
+  animation: fadeIn 0.5s ease-in-out; /* Smooth fade for modern transitions */
 }
 
 section.active {
   display: block;
 }
 
-.letter-content {
-  background: #fff;
-  padding: 2rem;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  font-size: 1rem;
+section p {
+  font-size: 1.1em;
   color: #333;
+  white-space: pre-line; /* Preserve line breaks in letters */
+  padding: 20px;
+  background: #fffaf0; /* Very light cream for paper-like feel */
+  border: 1px solid #f4c2c2; /* Subtle pink border */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
-.divider {
+/* Add a subtle heart decoration for affection */
+section p::before {
+  content: '💌'; /* Envelope emoji for a loving touch */
   display: block;
-  height: 1px;
-  background: linear-gradient(to right, transparent, #7c3aed, transparent);
-  border: none;
-  margin: 2rem auto;
-  width: 60%;
-  opacity: 0.4;
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #ff69b4; /* Hot pink heart */
 }
 
+/* Footer navigation – modern button styles */
 footer {
-  margin-top: 2rem;
+  margin-top: 40px;
+  text-align: center;
+}
+
+.week-nav {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 10px;
 }
 
-.week-btn {
-  padding: 0.6rem 1rem;
-  background: #ede9fe;
-  color: #4c1d95;
+.week-nav button {
+  padding: 10px 20px;
+  background: #ffb6c1; /* Light pink for buttons */
   border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  font-size: 0.95rem;
-}
-
-.week-btn:hover {
-  background: #ddd6fe;
-}
-
-.week-btn.active {
-  background: #7c3aed;
+  border-radius: 50px; /* Pill-shaped for modern, soft look */
   color: #fff;
+  font-size: 0.9em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Arial', sans-serif;
+}
+
+.week-nav button:hover {
+  background: #ff69b4; /* Brighter pink on hover */
+  transform: scale(1.05); /* Gentle zoom for interaction */
+}
+
+.week-nav button.active {
+  background: #c71585; /* Deeper pink for active state */
+}
+
+/* Fade animation for sections */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive design for mobile */
+@media (max-width: 600px) {
+  .container {
+    padding: 20px;
+  }
+
+  #title {
+    font-size: 1.5em;
+  }
+
+  section p {
+    font-size: 1em;
+    padding: 15px;
+  }
+
+  .week-nav button {
+    padding: 8px 15px;
+    font-size: 0.8em;
+  }
 }
