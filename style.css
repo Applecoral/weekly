@@ -1,143 +1,139 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-/* Reset and base styles for modern feel */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* ====== Global Styles ====== */
+:root {
+  --bg-color: #1e142a; /* Deep plum */
+  --text-color: #f6f4f9; /* Soft white */
+  --accent-color: #cda8ff; /* Light lavender */
+  --highlight-color: #e6d7b9; /* Subtle gold beige */
+  --divider-color: rgba(255, 255, 255, 0.1);
+  --button-active: #cda8ff;
+  --button-hover: #b690ff;
 }
 
 body {
-  font-family: 'Georgia', serif; /* Elegant, affectionate serif for letter-like feel */
-  background-image: url('images/drool.jpg'); /* Use the uploaded wavy gradient as background */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed; /* Keeps background fixed for a immersive feel */
-  color: #4a4a4a; /* Gentle dark gray for readability */
-  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  background: radial-gradient(circle at top, #2b1a3b, var(--bg-color));
+  color: var(--text-color);
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  padding: 20px;
 }
 
-/* Container for centered, card-like layout */
+/* ====== Container ====== */
 .container {
-  max-width: 800px;
-  width: 100%;
-  background: rgba(255, 255, 255, 0.85); /* Slightly more transparent to let wavy gradient show through */
-  border-radius: 20px; /* Rounded corners for a gentle, modern touch */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  overflow: hidden;
-  padding: 40px;
-  position: relative;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  width: 90%;
+  max-width: 850px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
 }
 
-/* Header styles – elegant and inviting */
+.container:hover {
+  transform: translateY(-3px);
+}
+
+/* ====== Header ====== */
 header {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 2rem;
 }
 
-#date {
-  font-size: 1.2em;
-  color: #81d4fa; /* Light blue accent from the image's middle waves */
-  font-style: italic;
-  margin-bottom: 10px;
+header h1 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--highlight-color);
 }
 
-#title {
-  font-size: 2em;
-  color: #f48fb1; /* Soft pink from the image's top gradient */
-  font-family: 'Arial', sans-serif; /* Clean sans-serif for modernity */
-  text-transform: uppercase;
-  letter-spacing: 1px;
+header h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--accent-color);
+  margin-top: 0.3rem;
 }
 
-/* Main content – affectionate letter styling */
-main {
-  position: relative;
-}
-
-section {
+/* ====== Main Sections ====== */
+main section {
   display: none;
-  animation: fadeIn 0.5s ease-in-out; /* Smooth fade for modern transitions */
+  line-height: 1.8;
+  font-size: 1rem;
 }
 
-section.active {
+main section.active {
   display: block;
 }
 
-section p {
-  font-size: 1.1em;
-  color: #333;
-  white-space: pre-line; /* Preserve line breaks in letters */
-  padding: 20px;
-  background: rgba(255, 255, 255, 0.95); /* Semi-transparent white for a soft, layered feel over the background */
-  border: 1px solid #d7bde2; /* Soft purple border inspired by the image's bottom gradient */
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+p {
+  margin-bottom: 1.2rem;
 }
 
-/* Footer navigation – modern button styles */
+em {
+  color: var(--accent-color);
+  font-style: normal;
+  font-weight: 600;
+}
+
+.divider {
+  border: none;
+  height: 1px;
+  background: var(--divider-color);
+  margin: 1.5rem 0;
+}
+
+/* ====== Footer (Navigation) ====== */
 footer {
-  margin-top: 40px;
   text-align: center;
+  margin-top: 2.5rem;
 }
 
 .week-nav {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
+  gap: 0.5rem;
 }
 
 .week-nav button {
-  padding: 10px 20px;
-  background: #ffb6c1; /* Light pink from the top for buttons */
-  border: none;
-  border-radius: 50px; /* Pill-shaped for modern, soft look */
-  color: #fff;
-  font-size: 0.9em;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--text-color);
+  padding: 0.5rem 1.1rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
   cursor: pointer;
-  transition: all 0.3s ease;
-  font-family: 'Arial', sans-serif;
+  transition: all 0.25s ease;
 }
 
 .week-nav button:hover {
-  background: #81d4fa; /* Light blue on hover, matching middle waves */
-  transform: scale(1.05); /* Gentle zoom for interaction */
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--accent-color);
 }
 
 .week-nav button.active {
-  background: #ba68c8; /* Deeper purple for active, from bottom gradient */
+  background: var(--button-active);
+  color: #1e142a;
+  font-weight: 600;
 }
 
-/* Fade animation for sections */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Responsive design for mobile */
+/* ====== Responsiveness ====== */
 @media (max-width: 600px) {
   .container {
-    padding: 20px;
+    padding: 1.5rem;
   }
 
-  #title {
-    font-size: 1.5em;
-  }
-
-  section p {
-    font-size: 1em;
-    padding: 15px;
+  header h2 {
+    font-size: 1.7rem;
   }
 
   .week-nav button {
-    padding: 8px 15px;
-    font-size: 0.8em;
+    padding: 0.4rem 0.9rem;
+    font-size: 0.85rem;
   }
 }
