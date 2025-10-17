@@ -7,7 +7,11 @@
 
 body {
   font-family: 'Georgia', serif; /* Elegant, affectionate serif for letter-like feel */
-  background: linear-gradient(to bottom, #fff0f5, #ffe4e1); /* Soft pastel pink gradient for warmth */
+  background-image: url('images/drool.jpg'); /* Use the uploaded wavy gradient as background */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Keeps background fixed for a immersive feel */
   color: #4a4a4a; /* Gentle dark gray for readability */
   line-height: 1.6;
   display: flex;
@@ -21,7 +25,7 @@ body {
 .container {
   max-width: 800px;
   width: 100%;
-  background: rgba(255, 255, 255, 0.9); /* Semi-transparent white for softness */
+  background: rgba(255, 255, 255, 0.85); /* Slightly more transparent to let wavy gradient show through */
   border-radius: 20px; /* Rounded corners for a gentle, modern touch */
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
   overflow: hidden;
@@ -37,14 +41,14 @@ header {
 
 #date {
   font-size: 1.2em;
-  color: #d68fa3; /* Soft pink for date */
+  color: #81d4fa; /* Light blue accent from the image's middle waves */
   font-style: italic;
   margin-bottom: 10px;
 }
 
 #title {
   font-size: 2em;
-  color: #c06c84; /* Warm plum for title */
+  color: #f48fb1; /* Soft pink from the image's top gradient */
   font-family: 'Arial', sans-serif; /* Clean sans-serif for modernity */
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -69,20 +73,10 @@ section p {
   color: #333;
   white-space: pre-line; /* Preserve line breaks in letters */
   padding: 20px;
-  background: #fffaf0; /* Very light cream for paper-like feel */
-  border: 1px solid #f4c2c2; /* Subtle pink border */
+  background: rgba(255, 255, 255, 0.95); /* Semi-transparent white for a soft, layered feel over the background */
+  border: 1px solid #d7bde2; /* Soft purple border inspired by the image's bottom gradient */
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-}
-
-/* Add a subtle heart decoration for affection */
-section p::before {
-  content: '💌'; /* Envelope emoji for a loving touch */
-  display: block;
-  text-align: center;
-  font-size: 2em;
-  margin-bottom: 20px;
-  color: #ff69b4; /* Hot pink heart */
 }
 
 /* Footer navigation – modern button styles */
@@ -100,7 +94,7 @@ footer {
 
 .week-nav button {
   padding: 10px 20px;
-  background: #ffb6c1; /* Light pink for buttons */
+  background: #ffb6c1; /* Light pink from the top for buttons */
   border: none;
   border-radius: 50px; /* Pill-shaped for modern, soft look */
   color: #fff;
@@ -111,12 +105,12 @@ footer {
 }
 
 .week-nav button:hover {
-  background: #ff69b4; /* Brighter pink on hover */
+  background: #81d4fa; /* Light blue on hover, matching middle waves */
   transform: scale(1.05); /* Gentle zoom for interaction */
 }
 
 .week-nav button.active {
-  background: #c71585; /* Deeper pink for active state */
+  background: #ba68c8; /* Deeper purple for active, from bottom gradient */
 }
 
 /* Fade animation for sections */
