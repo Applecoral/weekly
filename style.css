@@ -1,14 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 /* Root Variables - Clean Minimal White/Gray Theme */
+/* Root Variables - Dark Mode Charcoal + Muted Teal */
 :root {
-  --glass-bg: rgba(255, 255, 255, 0.95); /* Clean white glass */
-  --glass-border: rgba(0, 0, 0, 0.1); /* Subtle gray border */
-  --accent: #1f2937; /* Deep slate gray accent */
-  --text: #111827; /* Dark gray text */
-  --muted: #6b7280; /* Medium gray for secondary */
-  --highlight: #f9fafb; /* Very light gray highlight */
-  --overlay-scrim: rgba(255, 255, 255, 0.05); /* Minimal scrim */
+  --glass-bg: rgba(17, 24, 39, 0.9); /* Dark slate glass */
+  --glass-border: rgba(51, 65, 85, 0.6); /* Cool gray border */
+  --accent: #0ea5e9; /* Muted cyan/teal - pops without being harsh */
+  --text: #e5e7eb; /* Soft light gray text */
+  --muted: #9ca3af; /* Medium gray */
+  --highlight: #f3f4f6; /* Very subtle light gray */
+  --overlay-scrim: rgba(0, 0, 0, 0.4); /* Darker scrim for depth */
 }
 
 /* Base - Mobile First */
