@@ -1,14 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-/* Root Variables - Warm Golden/Coral for Deep Blue Background */
+/* Root Variables - Clean Minimal White/Gray Theme */
 :root {
-  --glass-bg: rgba(240, 120, 80, 0.9); /* Warm coral glass */
-  --glass-border: rgba(255, 165, 0, 0.5); /* Golden border */
-  --accent: #ff8c00; /* Dark orange accent - pops against blue */
-  --text: #fffaf0; /* Floral white for readability */
-  --muted: #ffdab9; /* Peach muted */
-  --highlight: #ffe4b5; /* Light golden highlight */
-  --overlay-scrim: rgba(0, 0, 0, 0.15); /* Light scrim to enhance blue */
+  --glass-bg: rgba(255, 255, 255, 0.95); /* Clean white glass */
+  --glass-border: rgba(0, 0, 0, 0.1); /* Subtle gray border */
+  --accent: #1f2937; /* Deep slate gray accent */
+  --text: #111827; /* Dark gray text */
+  --muted: #6b7280; /* Medium gray for secondary */
+  --highlight: #f9fafb; /* Very light gray highlight */
+  --overlay-scrim: rgba(255, 255, 255, 0.05); /* Minimal scrim */
 }
 
 /* Base - Mobile First */
