@@ -24,6 +24,7 @@ html {
 
 body {
   font-family: 'Inter', sans-serif;
+  text-align: justify;
   background: var(--overlay-scrim), url('images/drool.jpg') center/cover no-repeat fixed; /* Image with light scrim */
   min-height: 100vh;
   color: var(--text);
