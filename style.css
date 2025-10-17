@@ -1,14 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-/* Root Variables - Refined for pink-blue background */
+/* Root Variables - Warm Golden/Coral for Deep Blue Background */
 :root {
-  --glass-bg: rgba(30, 20, 60, 0.85); /* Semi-opaque deep indigo for readability */
-  --glass-border: rgba(100, 50, 200, 0.4); /* Subtle purple border */
-  --accent: #7c3aed; /* Vibrant violet accent */
-  --text: #fdfdff; /* Bright white text for contrast */
-  --muted: #a5b4fc; /* Soft indigo muted */
-  --highlight: #ddd6fe; /* Light purple highlight */
-  --overlay-scrim: rgba(0, 0, 0, 0.25); /* Light dark overlay for readability */
+  --glass-bg: rgba(240, 120, 80, 0.9); /* Warm coral glass */
+  --glass-border: rgba(255, 165, 0, 0.5); /* Golden border */
+  --accent: #ff8c00; /* Dark orange accent - pops against blue */
+  --text: #fffaf0; /* Floral white for readability */
+  --muted: #ffdab9; /* Peach muted */
+  --highlight: #ffe4b5; /* Light golden highlight */
+  --overlay-scrim: rgba(0, 0, 0, 0.15); /* Light scrim to enhance blue */
 }
 
 /* Base - Mobile First */
