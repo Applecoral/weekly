@@ -1,17 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-/* ====== Root Colors & Fonts ====== */
 :root {
-  --glass-bg: rgba(255, 255, 255, 0.1);
-  --glass-border: rgba(255, 255, 255, 0.2);
-  --accent: #ff69b4; /* Pink accent, tying back to your original gradient idea */
-  --text: #f8f6fb;
-  --muted: #d1b3c4;
-  --highlight: #ffe4e1;
-  --overlay-gradient: linear-gradient(rgba(255, 105, 180, 0.3), rgba(255, 192, 203, 0.3)); /* Subtle pink overlay */
+  /* Deep indigo/violet theme for pink backgrounds */
+  --glass-bg: rgba(75, 0, 130, 0.15); /* Deep indigo glass */
+  --glass-border: rgba(147, 0, 234, 0.3); /* Violet border */
+  --accent: #8a2be2; /* Blue violet - pops against pink */
+  --text: #f0e6ff; /* Light lavender for readability */
+  --text-dark: #d8bffd; /* Slightly darker for hierarchy */
+  --muted: #b19cd9; /* Muted purple */
+  --highlight: #e6d5ff; /* Soft lavender highlight */
+  --button-bg: rgba(138, 43, 226, 0.2); /* Violet glass buttons */
+  --active-bg: #8a2be2; /* Solid violet for active states */
 }
 
-/* ====== Base Layout ====== */
+/* ====== Base Layout - Mobile First ====== */
+* {
+  box-sizing: border-box;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -19,52 +25,211 @@ html {
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Roboto', sans-serif;
-  background: var(--overlay-gradient), url('images/drool.jpg') center/cover no-repeat fixed; /* Image with pink overlay */
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--overlay-gradient), url('images/drool.jpg') center/cover no-repeat fixed;
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
   color: var(--text);
   overflow-x: hidden;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* ====== Glass Container ====== */
+/* ====== Mobile-First Container ====== */
 .container {
   background: var(--glass-bg);
-  backdrop-filter: blur(20px) saturate(160%);
+  backdrop-filter: blur(20px) saturate(180%);
   border: 1px solid var(--glass-border);
-  border-radius: 24px;
-  width: 90%;
-  max-width: 960px;
-  margin: 4rem auto 3rem;
-  padding: 3rem;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-  animation: fadeIn 1s ease-in-out;
+  border-radius: 20px;
+  width: calc(100% - 2rem);
+  max-width: 600px; /* Smaller max for mobile focus */
+  margin: 1.5rem auto;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.8s ease-out;
 }
 
-/* ====== Header ====== */
+/* ====== Header - Mobile Optimized ====== */
 header {
   text-align: center;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(147, 0, 234, 0.2);
 }
 
 header h1 {
-  font-size: 1.4rem;
+  font-size: clamp(1rem, 4vw, 1.2rem);
   color: var(--highlight);
   font-weight: 400;
   margin-bottom: 0.5rem;
+  opacity: 0.95;
 }
 
 header h2 {
-  font-size: 2.6rem;
+  font-size: clamp(1.5rem, 6vw, 2.2rem);
   color: var(--accent);
-  letter-spacing: 1.2px;
-  font-weight: 700;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
 }
 
 /* ====== Main Content ====== */
+main {
+  min-height: 400px; /* Ensure scrollable content area */
+}
+
 main section {
+  display: none;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: clamp(1rem, 3.5vw, 1.1rem);
+}
+
+main section.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+main section p {
+  margin-bottom: 1.5rem;
+  transition: color 0.2s ease;
+}
+
+main section p:hover {
+  color: var(--highlight);
+}
+
+main section p:only-child {
+  text-align: center;
+  font-size: clamp(1.2rem, 5vw, 1.8rem);
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+  animation: pulse 2s infinite;
+}
+
+/* Bible Verse */
+em {
+  color: var(--accent);
+  font-style: italic;
+  font-weight: 500;
+  background: rgba(138, 43, 226, 0.1);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+}
+
+.divider {
+  border: none;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--glass-border), transparent);
+  margin: 2rem 0;
+}
+
+/* ====== Touch-Friendly Navigation ====== */
+footer {
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(147, 0, 234, 0.2);
+}
+
+.week-nav {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 0.75rem;
+  padding: 1rem 0;
+}
+
+.week-nav button {
+  background: var(--button-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--text);
+  padding: 0.75rem 0.5rem;
+  border-radius: 12px;
+  font-size: clamp(0.85rem, 3vw, 1rem);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-height: 48px; /* Touch target minimum */
+  touch-action: manipulation;
+}
+
+.week-nav button:hover,
+.week-nav button:focus {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(138, 43, 226, 0.3);
+}
+
+.week-nav button.active {
+  background: var(--active-bg);
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 0 20px rgba(138, 43, 226, 0.4);
+  transform: scale(1.02);
+}
+
+/* ====== Animations ====== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 0.4; }
+}
+
+/* ====== Enhanced Mobile Styles ====== */
+@media (max-width: 480px) {
+  .container {
+    margin: 1rem;
+    padding: 1.5rem;
+    border-radius: 16px;
+  }
+  
+  .week-nav {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+  }
+  
+  .week-nav button {
+    padding: 0.75rem 0.25rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    margin: 2rem auto;
+    padding: 2.5rem;
+    max-width: 700px;
+  }
+  
+  .week-nav {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1rem;
+  }
+}
+
+/* ====== Accessibility ====== */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Loading state for protected content */
+#protected-content {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+#protected-content.visible {
+  opacity: 1;
+}main section {
   display: none;
   opacity: 0;
   transform: translateY(15px);
