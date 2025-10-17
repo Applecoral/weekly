@@ -4,143 +4,133 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Letters to Rainfall</title>
-  <!-- Favicons + CSS Link -->
+  <!-- Favicons -->
   <link rel="apple-touch-icon" sizes="57x57" href="assets/apple-icon-57x57.png">
-<link rel="apple-touch-icon" sizes="60x60" href="assets/apple-icon-60x60.png">
-<link rel="apple-touch-icon" sizes="72x72" href="assets/apple-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="76x76" href="assets/apple-icon-76x76.png">
-<link rel="apple-touch-icon" sizes="114x114" href="assets/apple-icon-114x114.png">
-<link rel="apple-touch-icon" sizes="120x120" href="assets/apple-icon-120x120.png">
-<link rel="apple-touch-icon" sizes="144x144" href="assets/apple-icon-144x144.png">
-<link rel="apple-touch-icon" sizes="152x152" href="assets/apple-icon-152x152.png">
-<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-icon-180x180.png">
-<link rel="icon" type="image/png" sizes="192x192" href="assets/android-icon-192x192.png">
-<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="96x96" href="assets/favicon-96x96.png">
-<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
-<link rel="manifest" href="assets/manifest.json">
-<meta name="msapplication-TileColor" content="#ffffff">
-<meta name="msapplication-TileImage" content="assets/ms-icon-144x144.png">
-<meta name="theme-color" content="#ffffff">
+  <link rel="apple-touch-icon" sizes="60x60" href="assets/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="assets/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="assets/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="assets/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="assets/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="assets/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="assets/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+  <link rel="manifest" href="assets/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="assets/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+  
+  <!-- Updated CSS Link -->
   <link rel="stylesheet" href="style.css">
 
-    <!-- EmailJS SDK -->
+  <!-- EmailJS SDK (if needed; no form visible, but keeping it) -->
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 </head>
 <body>
   <div id="protected-content" style="display: none;">
     <div class="container">
       <!-- Header -->
-      <header>
+      <header class="header">
         <h1 id="date">Week 1: 19th October, 2025</h1>
         <h2 id="title">A week to remember</h2>
       </header>
 
-      <!-- Week Sections -->
-      <main>
-        <!-- Week 1 -->
-        <section id="week1" class="active">
-        <section id="week1" class="active">
-  <p>
-    Hi Rainfall,
-    I decided to write to you weekly till year's end when I might finally leave you and move on with my life (not sure yet).
-    I will not be sending you links every week, but I'll make sure to publish a new one every week, so check back every Monday to see the next week's letter.
-    I wanted to recap what happened this week but all I can say is “it's well” and “the LORD is in control.”
-  </p>
+      <!-- Main Content -->
+      <main class="main-content">
+        <!-- Week Sections (using data attributes for better semantics) -->
+        <section data-week="week1" class="week-section active">
+          <p>
+            Hi Rainfall,
+            I decided to write to you weekly till year's end when I might finally leave you and move on with my life (not sure yet).
+            I will not be sending you links every week, but I'll make sure to publish a new one every week, so check back every Monday to see the next week's letter.
+            I wanted to recap what happened this week but all I can say is “it's well” and “the LORD is in control.”
+          </p>
 
-  <hr class="divider">
+          <hr class="divider">
 
-  <p>
-    Last week was such a time for you, how did it go? I'm glad you have recovered from both the injection and malaria.
-    Also, your skin is healing — that's an answered prayer — thank God.
-    Your productivity this week is so beautiful, totally love to see it. It's already making sense, hope you are willing to do more.
-  </p>
+          <p>
+            Last week was such a time for you, how did it go? I'm glad you have recovered from both the injection and malaria.
+            Also, your skin is healing — that's an answered prayer — thank God.
+            Your productivity this week is so beautiful, totally love to see it. It's already making sense, hope you are willing to do more.
+          </p>
 
-  <hr class="divider">
+          <hr class="divider">
 
-  <p>
-    I pray that you may enjoy good health and that all may go well with you, even as your soul is getting along well.
-    <em>3 John 1:2</em>
-  </p>
+          <p>
+            I pray that you may enjoy good health and that all may go well with you, even as your soul is getting along well.
+            <em>3 John 1:2</em>
+          </p>
         </section>
 
-        <!-- Week 2 -->
-        <section id="week2">
+        <section data-week="week2" class="week-section">
           <p>Coming soon...</p>
         </section>
 
-        <!-- Week 3 -->
-        <section id="week3">
+        <section data-week="week3" class="week-section">
           <p>Coming soon...</p>
         </section>
 
-        <!-- Week 4 -->
-        <section id="week4">
+        <section data-week="week4" class="week-section">
           <p>Coming soon...</p>
         </section>
 
-        <!-- Week 5 -->
-        <section id="week5">
+        <section data-week="week5" class="week-section">
           <p>Coming soon...</p>
         </section>
 
-        <!-- Week 6 -->
-        <section id="week6">
+        <section data-week="week6" class="week-section">
           <p>Coming soon...</p>
         </section>
 
-        <!-- Week 7 -->
-        <section id="week7">
+        <section data-week="week7" class="week-section">
           <p>Coming soon...</p>
         </section>
 
-        <!-- Week 8 -->
-        <section id="week8">
+        <section data-week="week8" class="week-section">
           <p>Coming soon...</p>
         </section>
 
-        <!-- Week 9 -->
-        <section id="week9">
+        <section data-week="week9" class="week-section">
           <p>Coming soon...</p>
         </section>
 
-        <!-- Week 10 -->
-        <section id="week10">
+        <section data-week="week10" class="week-section">
           <p>Coming soon...</p>
         </section>
 
-        <!-- Week 11 -->
-        <section id="week11">
+        <section data-week="week11" class="week-section">
           <p>Coming soon...</p>
         </section>
 
-        <!-- Week 12 -->
-        <section id="week12">
+        <section data-week="week12" class="week-section">
           <p>Coming soon...</p>
         </section>
       </main>
 
-      <!-- Navigation -->
-      <footer>
-        <div class="week-nav">
-          <button data-week="week1" class="active">Week 1</button>
-          <button data-week="week2">Week 2</button>
-          <button data-week="week3">Week 3</button>
-          <button data-week="week4">Week 4</button>
-          <button data-week="week5">Week 5</button>
-          <button data-week="week6">Week 6</button>
-          <button data-week="week7">Week 7</button>
-          <button data-week="week8">Week 8</button>
-          <button data-week="week9">Week 9</button>
-          <button data-week="week10">Week 10</button>
-          <button data-week="week11">Week 11</button>
-          <button data-week="week12">Week 12</button>
-        </div>
+      <!-- Navigation Footer -->
+      <footer class="footer">
+        <nav class="week-nav">
+          <button data-week="week1" class="nav-button active">Week 1</button>
+          <button data-week="week2" class="nav-button">Week 2</button>
+          <button data-week="week3" class="nav-button">Week 3</button>
+          <button data-week="week4" class="nav-button">Week 4</button>
+          <button data-week="week5" class="nav-button">Week 5</button>
+          <button data-week="week6" class="nav-button">Week 6</button>
+          <button data-week="week7" class="nav-button">Week 7</button>
+          <button data-week="week8" class="nav-button">Week 8</button>
+          <button data-week="week9" class="nav-button">Week 9</button>
+          <button data-week="week10" class="nav-button">Week 10</button>
+          <button data-week="week11" class="nav-button">Week 11</button>
+          <button data-week="week12" class="nav-button">Week 12</button>
+        </nav>
       </footer>
     </div>
   </div>
 
-  <!-- Script -->
+  <!-- Updated Script -->
   <script src="script.js"></script>
 </body>
 </html>
