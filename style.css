@@ -1,357 +1,232 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
+/* Fallback-safe root variables */
 :root {
-  /* Deep indigo/violet theme for pink backgrounds */
-  --glass-bg: rgba(75, 0, 130, 0.15); /* Deep indigo glass */
-  --glass-border: rgba(147, 0, 234, 0.3); /* Violet border */
-  --accent: #8a2be2; /* Blue violet - pops against pink */
-  --text: #f0e6ff; /* Light lavender for readability */
-  --text-dark: #d8bffd; /* Slightly darker for hierarchy */
-  --muted: #b19cd9; /* Muted purple */
-  --highlight: #e6d5ff; /* Soft lavender highlight */
-  --button-bg: rgba(138, 43, 226, 0.2); /* Violet glass buttons */
-  --active-bg: #8a2be2; /* Solid violet for active states */
+  --glass-bg: rgba(20, 0, 60, 0.9); /* Dark indigo fallback */
+  --glass-border: rgba(138, 43, 226, 0.6);
+  --accent: #8a2be2;
+  --text: #f0e6ff;
+  --text-dark: #d8bffd;
+  --muted: #b19cd9;
+  --highlight: #e6d5ff;
 }
 
-/* ====== Base Layout - Mobile First ====== */
+/* Base reset - ensure visibility */
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
-html {
+html, body {
+  height: 100%;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
   scroll-behavior: smooth;
 }
 
+/* Safe background with fallbacks */
 body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: url('images/drool.jpg') center/cover no-repeat fixed;
+  background: 
+    /* Fallback gradient if image fails */
+    linear-gradient(135deg, #ff69b4 0%, #ff1493 50%, #c71585 100%),
+    /* Image with safe overlay */
+    linear-gradient(rgba(20, 0, 60, 0.7), rgba(20, 0, 60, 0.7)),
+    url('images/drool.jpg') center/cover no-repeat fixed;
+  background-attachment: fixed;
   min-height: 100vh;
   color: var(--text);
   overflow-x: hidden;
-  line-height: 1.7;
-  -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 1rem 0;
 }
 
-/* ====== Mobile-First Container ====== */
+/* Ensure protected content shows */
+#protected-content {
+  width: 100%;
+  min-height: 100vh;
+  display: flex !important; /* Override inline style */
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Mobile-first container */
 .container {
   background: var(--glass-bg);
-  backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px); /* Safari fallback */
   border: 1px solid var(--glass-border);
   border-radius: 20px;
-  width: calc(100% - 2rem);
-  max-width: 600px; /* Smaller max for mobile focus */
-  margin: 1.5rem auto;
-  padding: 2rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  width: 95%;
+  max-width: 500px;
+  margin: 1rem auto;
+  padding: 1.5rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
   animation: fadeIn 0.8s ease-out;
+  color: var(--text);
 }
 
-/* ====== Header - Mobile Optimized ====== */
+/* Header */
 header {
   text-align: center;
-  margin-bottom: 2rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid rgba(147, 0, 234, 0.2);
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(138, 43, 226, 0.3);
 }
 
 header h1 {
-  font-size: clamp(1rem, 4vw, 1.2rem);
+  font-size: clamp(1rem, 3vw, 1.1rem);
   color: var(--highlight);
   font-weight: 400;
   margin-bottom: 0.5rem;
-  opacity: 0.95;
 }
 
 header h2 {
-  font-size: clamp(1.5rem, 6vw, 2.2rem);
+  font-size: clamp(1.4rem, 5vw, 2rem);
   color: var(--accent);
   font-weight: 600;
-  letter-spacing: -0.02em;
   line-height: 1.2;
 }
 
-/* ====== Main Content ====== */
+/* Main content */
 main {
-  min-height: 400px; /* Ensure scrollable content area */
+  flex: 1;
+  min-height: 300px;
 }
 
 main section {
   display: none;
   opacity: 0;
   transform: translateY(10px);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  font-size: clamp(1rem, 3.5vw, 1.1rem);
+  transition: all 0.4s ease;
+  font-size: clamp(0.95rem, 3vw, 1rem);
+  line-height: 1.7;
 }
 
 main section.active {
-  display: block;
+  display: block !important;
   opacity: 1;
   transform: translateY(0);
 }
 
 main section p {
-  margin-bottom: 1.5rem;
-  transition: color 0.2s ease;
-}
-
-main section p:hover {
-  color: var(--highlight);
+  margin-bottom: 1.2rem;
 }
 
 main section p:only-child {
   text-align: center;
-  font-size: clamp(1.2rem, 5vw, 1.8rem);
-  font-weight: 500;
+  font-size: clamp(1.1rem, 4vw, 1.5rem);
   color: var(--muted);
-  letter-spacing: 0.03em;
+  font-weight: 500;
   animation: pulse 2s infinite;
 }
 
-/* Bible Verse */
 em {
   color: var(--accent);
   font-style: italic;
-  font-weight: 500;
-  background: rgba(138, 43, 226, 0.1);
-  padding: 0.2rem 0.4rem;
+  background: rgba(138, 43, 226, 0.2);
+  padding: 0.1rem 0.3rem;
   border-radius: 4px;
 }
 
 .divider {
-  border: none;
   height: 1px;
   background: linear-gradient(to right, transparent, var(--glass-border), transparent);
-  margin: 2rem 0;
+  border: none;
+  margin: 1.5rem 0;
 }
 
-/* ====== Touch-Friendly Navigation ====== */
+/* Navigation */
 footer {
-  margin-top: 2.5rem;
-  padding-top: 2rem;
-  border-top: 1px solid rgba(147, 0, 234, 0.2);
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(138, 43, 226, 0.3);
 }
 
 .week-nav {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-  gap: 0.75rem;
-  padding: 1rem 0;
+  grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+  gap: 0.5rem;
+  width: 100%;
 }
 
 .week-nav button {
-  background: var(--button-bg);
+  background: rgba(138, 43, 226, 0.2);
   border: 1px solid var(--glass-border);
   color: var(--text);
-  padding: 0.75rem 0.5rem;
-  border-radius: 12px;
-  font-size: clamp(0.85rem, 3vw, 1rem);
+  padding: 0.75rem 0.25rem;
+  border-radius: 10px;
+  font-size: clamp(0.8rem, 2.5vw, 0.9rem);
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
-  min-height: 48px; /* Touch target minimum */
+  min-height: 44px; /* Mobile touch target */
   touch-action: manipulation;
 }
 
 .week-nav button:hover,
 .week-nav button:focus {
+  background: rgba(138, 43, 226, 0.4);
   border-color: var(--accent);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(138, 43, 226, 0.3);
 }
 
 .week-nav button.active {
-  background: var(--active-bg);
-  color: white;
-  font-weight: 600;
-  box-shadow: 0 0 20px rgba(138, 43, 226, 0.4);
-  transform: scale(1.02);
+  background: var(--accent) !important;
+  color: white !important;
+  box-shadow: 0 0 15px rgba(138, 43, 226, 0.5);
 }
 
-/* ====== Animations ====== */
+/* Animations */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 0.8; }
-  50% { opacity: 0.4; }
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 0.3; }
 }
 
-/* ====== Enhanced Mobile Styles ====== */
+/* Mobile optimizations */
 @media (max-width: 480px) {
-  .container {
-    margin: 1rem;
-    padding: 1.5rem;
+  body { padding: 0.5rem 0; }
+  .container { 
+    width: 98%; 
+    padding: 1.25rem; 
+    margin: 0.5rem auto;
     border-radius: 16px;
   }
   
   .week-nav {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0.5rem;
-  }
-  
-  .week-nav button {
-    padding: 0.75rem 0.25rem;
-    font-size: 0.9rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.4rem;
   }
 }
 
 @media (min-width: 768px) {
   .container {
+    max-width: 600px;
+    padding: 2rem;
     margin: 2rem auto;
-    padding: 2.5rem;
-    max-width: 700px;
   }
   
   .week-nav {
-    grid-template-columns: repeat(6, 1fr);
-    gap: 1rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
   }
 }
 
-/* ====== Accessibility ====== */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-/* Loading state for protected content */
+/* Ensure visibility fix */
+main section.active,
 #protected-content {
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-
-#protected-content.visible {
-  opacity: 1;
-}main section {
-  display: none;
-  opacity: 0;
-  transform: translateY(15px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-  line-height: 1.9;
-  font-size: 1.1rem;
-}
-
-main section.active {
-  display: block;
-  opacity: 1;
-  transform: translateY(0);
-}
-
-main section p {
-  margin-bottom: 1.4rem;
-  transition: color 0.2s ease;
-}
-
-main section p:hover {
-  color: var(--highlight); /* Subtle hover for engagement */
-}
-
-/* “Coming Soon” Style */
-main section p:only-child {
-  text-align: center;
-  font-size: 2rem;
-  font-weight: 600;
-  color: var(--muted);
-  letter-spacing: 0.6px;
-  animation: pulse 1.5s infinite;
-}
-
-/* Bible Verse Highlight */
-em {
-  color: var(--accent);
-  font-style: italic;
-  font-weight: 500;
-}
-
-.divider {
-  border: none;
-  height: 1px;
-  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
-  margin: 2rem 0;
-}
-
-/* ====== Footer Navigation ====== */
-footer {
-  text-align: center;
-  margin-top: 3.5rem;
-}
-
-.week-nav {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.8rem;
-  padding-bottom: 1.2rem;
-}
-
-.week-nav button {
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid transparent;
-  color: var(--text);
-  padding: 0.6rem 1.2rem;
-  border-radius: 12px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.week-nav button:hover {
-  border-color: var(--accent);
-  transform: scale(1.08);
-  box-shadow: 0 0 10px rgba(255, 105, 180, 0.4);
-}
-
-.week-nav button.active {
-  background: var(--accent);
-  color: #2a0a1f;
-  font-weight: 600;
-  box-shadow: 0 0 15px rgba(255, 105, 180, 0.6);
-}
-
-.week-nav button:focus {
-  outline: none;
-  border-color: var(--highlight);
-}
-
-/* ====== Animations ====== */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(25px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
-}
-
-/* ====== Responsiveness ====== */
-@media (max-width: 650px) {
-  .container {
-    padding: 2rem;
-    margin-top: 2.5rem;
-  }
-
-  header h2 {
-    font-size: 2.1rem;
-  }
-
-  main section p:only-child {
-    font-size: 1.6rem;
-  }
-
-  .week-nav {
-    gap: 0.5rem;
-  }
-
-  .week-nav button {
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
-  }
+  background: transparent !important;
+  color: var(--text) !important;
 }
