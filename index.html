@@ -1,137 +1,474 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Letters to Rainfall</title>
-  <!-- Favicons -->
-  <link rel="apple-touch-icon" sizes="57x57" href="assets/apple-icon-57x57.png">
-  <link rel="apple-touch-icon" sizes="60x60" href="assets/apple-icon-60x60.png">
-  <link rel="apple-touch-icon" sizes="72x72" href="assets/apple-icon-72x72.png">
-  <link rel="apple-touch-icon" sizes="76x76" href="assets/apple-icon-76x76.png">
-  <link rel="apple-touch-icon" sizes="114x114" href="assets/apple-icon-114x114.png">
-  <link rel="apple-touch-icon" sizes="120x120" href="assets/apple-icon-120x120.png">
-  <link rel="apple-touch-icon" sizes="144x144" href="assets/apple-icon-144x144.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="assets/apple-icon-152x152.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-icon-180x180.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="assets/android-icon-192x192.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon-96x96.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
-  <meta name="msapplication-TileColor" content="#ffffff">
-  <meta name="msapplication-TileImage" content="assets/ms-icon-144x144.png">
-  <meta name="theme-color" content="#ffffff">
-  
-  <!-- Updated CSS Link -->
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The 12-Week Collection</title>
+    
+    <!-- Favicon Integration (🌸 Emoji) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>" />
+    
+    <!-- Load Montserrat and Spectral via <link> -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Spectral:wght@400;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
+    
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- EmailJS SDK (if needed; no form visible, but keeping it) -->
-  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <!-- Load EmailJS SDK for sending feedback -->
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    
+    <!-- Custom Configuration for elegant aesthetics -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-bg': '#fefcfb', // Very light cream
+                        'secondary-bg': '#fff5f7', // Softest pink
+                        'accent-text': '#5a3d4a', // Deep rose/taupe
+                        'light-accent': '#eacbd3', // Muted rose
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        // Using a more elegant, readable serif font for the letter body
+                        serif: ['Georgia', 'serif'],
+                        // New font for collection title (clean sans-serif)
+                        'montserrat': ['Montserrat', 'sans-serif'], 
+                        // New font for week title (elegant serif)
+                        'spectral': ['Bricolage Grotesque', 'serif'], 
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar for aesthetics */
+        body::-webkit-scrollbar {
+            width: 8px;
+        }
+        body::-webkit-scrollbar-track {
+            background: #fff5f7;
+        }
+        body::-webkit-scrollbar-thumb {
+            background-color: #eacbd3;
+            border-radius: 20px;
+            border: 2px solid #fff5f7;
+        }
+        /* Custom divider style to look more refined than a standard HR */
+        .elegant-hr {
+            border: none;
+            height: 2.5px;
+            background: linear-gradient(to right, transparent , rgba(88, 13, 13, 0.5), transparent);
+            margin: 2rem 0;
+            opacity: 0.6;
+        }
+        
+        /* Glassmorphism effect for the letter container */
+        .glass-card {
+            background-color: rgba(255, 255, 255, 0.4); /* Semi-transparent white */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px); /* Safari support */
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); /* Subtle but noticeable shadow */
+        }
+    </style>
 </head>
-<body>
-  <div id="protected-content" style="display: none;">
-    <div class="container">
-      <!-- Header -->
-      <header class="header">
-        <h1 id="date">THE 12-WEEK COLLECTION</h1>
-        <h2 id="title">Week 1: Ground Zero</h2>
-      </header>
+<body class="bg-secondary-bg min-h-screen p-4 md:p-8 font-sans">
 
-      <!-- Main Content -->
-      <main class="main-content">
-        <!-- Week Sections (using data attributes for better semantics) -->
-        <section data-week="week1" class="week-section active">
-          <p>
-            Hi Rainfall,
-            I decided to write to you weekly till year's end when I might finally leave you and move on with my life (not sure yet).</p>
-            <p>I will not be sending you links every week, but I'll make sure to publish a new one every week, so check back every Monday to see the next week's letter.
-            I wanted to recap what happened this week but all I can say is “it's well” and “the LORD is in control.”
-          </p>
+    <!-- Content Protection Overlay -->
+    <div id="login-overlay" class="fixed inset-0 z-50 flex items-center justify-center bg-secondary-bg p-8 transition-opacity duration-500 opacity-100">
+        <div class="glass-card max-w-sm w-full p-8 rounded-xl shadow-2xl text-center">
+            <h2 class="text-3xl font-spectral font-bold text-accent-text mb-4">A Private Collection</h2>
+            <p class="text-gray-600 mb-6 font-montserrat">Please enter the special word to unlock the collection.</p>
+            
+            <input type="password" id="password-input" class="w-full p-3 mb-4 rounded-lg border-2 border-light-accent focus:border-accent-text focus:ring-1 focus:ring-accent-text transition duration-200 text-center text-lg font-spectral placeholder-gray-400" placeholder="Secret Word" />
+            
+            <button onclick="handleLogin()" class="w-full py-3 rounded-lg bg-accent-text text-white font-semibold shadow-md hover:bg-opacity-90 transition duration-200 uppercase tracking-wider">
+                Unlock
+            </button>
 
-          <hr class="divider">
-
-          <p>
-            Last week was such a time for you, how did it go? I'm glad you have recovered from both the injection and malaria.
-            Also, your skin is healing — that's an answered prayer — thank God.
-            Your productivity this week is so beautiful, totally love to see it. It's already making sense, hope you are willing to do more.
-          </p>
-          <p>Even if you don’t see it now, I push you because I don’t ever want to look back one day and realize the person I started this journey with isn’t there anymore.</p>
-<p>That’s why I drag you, remind you, and sometimes even annoy you, because I believe in where we’re heading. I’m not perfect and I’m not even there yet myself, but I know we’ll make it. We’ll pull through.</p>
-
-          <hr class="divider">
-
-          <p>
-            I pray that you may enjoy good health and that all may go well with you, even as your soul is getting along well.
-            <em>3 John 1:2</em>
-          </p>
-        </section>
-
-        <section data-week="week2" class="week-section">
-          <p>Coming soon...</p>
-        </section>
-
-        <section data-week="week3" class="week-section">
-          <p>Coming soon...</p>
-        </section>
-
-        <section data-week="week4" class="week-section">
-          <p>Coming soon...</p>
-        </section>
-
-        <section data-week="week5" class="week-section">
-          <p>Coming soon...</p>
-        </section>
-
-        <section data-week="week6" class="week-section">
-          <p>Coming soon...</p>
-        </section>
-
-        <section data-week="week7" class="week-section">
-          <p>Coming soon...</p>
-        </section>
-
-        <section data-week="week8" class="week-section">
-          <p>Coming soon...</p>
-        </section>
-
-        <section data-week="week9" class="week-section">
-          <p>Coming soon...</p>
-        </section>
-
-        <section data-week="week10" class="week-section">
-          <p>Coming soon...</p>
-        </section>
-
-        <section data-week="week11" class="week-section">
-          <p>Coming soon...</p>
-        </section>
-
-        <section data-week="week12" class="week-section">
-          <p>Coming soon...</p>
-        </section>
-      </main>
-
-      <!-- Navigation Footer -->
-      <footer class="footer">
-        <nav class="week-nav">
-          <button data-week="week1" class="nav-button active">Week 1</button>
-          <button data-week="week2" class="nav-button">Week 2</button>
-          <button data-week="week3" class="nav-button">Week 3</button>
-          <button data-week="week4" class="nav-button">Week 4</button>
-          <button data-week="week5" class="nav-button">Week 5</button>
-          <button data-week="week6" class="nav-button">Week 6</button>
-          <button data-week="week7" class="nav-button">Week 7</button>
-          <button data-week="week8" class="nav-button">Week 8</button>
-          <button data-week="week9" class="nav-button">Week 9</button>
-          <button data-week="week10" class="nav-button">Week 10</button>
-          <button data-week="week11" class="nav-button">Week 11</button>
-          <button data-week="week12" class="nav-button">Week 12</button>
-        </nav>
-      </footer>
+            <p id="login-error" class="text-red-500 mt-4 h-5 font-montserrat text-sm"></p>
+        </div>
     </div>
-  </div>
 
-  <!-- Updated Script -->
-  <script src="script.js"></script>
+    <!-- Main Application Container (Initially hidden/transparent) -->
+    <div id="app-container" class="min-h-screen flex flex-col transition-opacity duration-1000 opacity-0 pointer-events-none">
+        
+        <!-- Header & Dynamic Week Indicator -->
+        <header class="w-full max-w-4xl mx-auto mb-8">
+            <!-- Main Title: Montserrat, Small Caps style -->
+            <h1 class="text-xl md:text-2xl uppercase font-montserrat tracking-widest text-accent-text/80 text-center mb-4">THE 12-WEEK COLLECTION</h1>
+            
+            <!-- Status/Alert Message Box (Replaces JS alert()) -->
+            <div id="status-message" class="hidden fixed top-0 left-1/2 -translate-x-1/2 mt-4 p-3 rounded-lg shadow-xl text-sm font-semibold transition-all duration-300 z-50"></div>
+
+            <!-- Week Indicator: Spectral, Bigger -->
+            <h2 id="week-title" class="text-4xl md:text-5xl font-spectral font-extrabold text-center text-accent-text mb-6 transition-opacity duration-300"></h2>
+        </header>
+
+        <!-- Content Area -->
+        <main class="flex-grow w-full max-w-4xl mx-auto">
+            <!-- The Letter Card - Uses glass-card class -->
+            <div id="content-display" class="p-6 md:p-10 lg:p-12 rounded-2xl transition-all duration-500 transform glass-card font-serif text-gray-800 leading-relaxed text-lg">
+                <!-- Content is injected here by JavaScript -->
+                <p class="text-center text-xl text-accent-text">Loading...</p>
+            </div>
+        </main>
+        
+        <!-- Footer & Navigation (Moved to the bottom) -->
+        <footer class="w-full max-w-4xl mx-auto mt-8 pt-4">
+            <h3 class="text-xl font-medium text-center text-accent-text mb-4">The Collection Map</h3>
+            <!-- Navigation Grid -->
+            <nav id="week-nav" class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-12 gap-2">
+                <!-- Buttons injected by JavaScript -->
+            </nav>
+        </footer>
+    </div>
+    
+    <!-- Floating Feedback Button (Injected by JS) -->
+    <!-- The button itself will be created and positioned by JavaScript in the DOMContentLoaded handler -->
+
+    <!-- Feedback Modal Popup -->
+    <div id="feedback-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm transition-opacity duration-300">
+        <div class="glass-card max-w-xs w-full p-6 rounded-xl shadow-2xl text-center font-montserrat">
+            <h3 class="text-2xl font-bold text-accent-text mb-4">Send Feedback</h3>
+            
+            <input type="text" id="user_name" placeholder="Your name" class="w-full p-3 mb-3 rounded-lg border border-light-accent focus:border-accent-text focus:ring-1 focus:ring-accent-text transition duration-200" />
+            
+            <textarea id="message" placeholder="Your message about the collection..." class="w-full h-24 p-3 mb-4 rounded-lg border border-light-accent focus:border-accent-text focus:ring-1 focus:ring-accent-text transition duration-200 resize-none"></textarea>
+            
+            <div class="flex justify-between space-x-3">
+                <button id="closeFeedback" class="w-1/2 py-2 rounded-lg bg-light-accent text-accent-text font-semibold hover:bg-light-accent/80 transition duration-200">
+                    Close
+                </button>
+                <button id="sendFeedback" class="w-1/2 py-2 rounded-lg bg-accent-text text-white font-semibold shadow-md hover:bg-opacity-90 transition duration-200">
+                    Send
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- JavaScript to handle navigation, content, authentication, and feedback -->
+    <script>
+        // --- 0. UTILITY FUNCTIONS (Replaces alert()) ---
+        function showStatusMessage(message, isSuccess = true) {
+            const statusBox = document.getElementById('status-message');
+            // Reset classes
+            statusBox.className = 'fixed top-0 left-1/2 -translate-x-1/2 mt-4 p-3 rounded-lg shadow-xl text-sm font-semibold transition-all duration-300 z-50';
+            statusBox.textContent = message;
+
+            if (isSuccess) {
+                statusBox.classList.add('bg-green-100', 'text-green-800');
+            } else {
+                statusBox.classList.add('bg-red-100', 'text-red-800');
+            }
+
+            // Show the message
+            statusBox.classList.remove('hidden');
+
+            // Hide after 4 seconds
+            setTimeout(() => {
+                statusBox.classList.add('hidden');
+            }, 4000);
+        }
+
+        // --- AUTHENTICATION CONFIG ---
+        const PASSWORD = "rainfall";
+        const TIMESTAMP_KEY = "collectionLastAccess";
+        // 14 days in milliseconds (14 * 24 hours * 60 minutes * 60 seconds * 1000 milliseconds)
+        const ACCESS_DURATION_MS = 14 * 24 * 60 * 60 * 1000; 
+
+        function grantAccess() {
+            const overlay = document.getElementById('login-overlay');
+            const app = document.getElementById('app-container');
+
+            // 1. Hide the overlay (with fade-out)
+            overlay.classList.remove('opacity-100');
+            overlay.classList.add('opacity-0');
+            
+            // Wait for transition to complete
+            setTimeout(() => {
+                overlay.style.display = 'none';
+                
+                // 2. Show the main application content with a fade-in effect
+                app.style.removeProperty('display'); // Remove temporary display:none
+                app.classList.remove('opacity-0', 'pointer-events-none');
+                app.classList.add('opacity-100', 'pointer-events-auto');
+                
+                // 3. Initialize content
+                createNavigationButtons();
+                loadWeek(1);
+                
+                // 4. Initialize Feedback button/logic (moved from DOMContentLoaded to ensure auth is complete)
+                initializeFeedback();
+            }, 500); // 500ms matches the transition duration
+        }
+
+        function handleLogin() {
+            const input = document.getElementById('password-input');
+            const errorDisplay = document.getElementById('login-error');
+            // The password is compared in lowercase and trimmed to be forgiving
+            const passwordAttempt = input.value.toLowerCase().trim(); 
+
+            if (passwordAttempt === PASSWORD) {
+                // Password correct: save timestamp and grant access
+                const now = Date.now();
+                try {
+                    localStorage.setItem(TIMESTAMP_KEY, now.toString());
+                    errorDisplay.textContent = "";
+                    grantAccess();
+                } catch (e) {
+                    console.error("Error setting localStorage:", e);
+                    errorDisplay.textContent = "Error saving access token. Try refreshing.";
+                }
+            } else {
+                // Password incorrect
+                errorDisplay.textContent = "Incorrect word. Please try again.";
+                input.value = ""; // Clear input
+                input.focus();
+            }
+        }
+        
+        function checkAccess() {
+            let needsLogin = true;
+            const app = document.getElementById('app-container');
+            const overlay = document.getElementById('login-overlay');
+
+            try {
+                const lastAccess = localStorage.getItem(TIMESTAMP_KEY);
+                if (lastAccess) {
+                    const lastAccessTimestamp = parseInt(lastAccess, 10);
+                    const now = Date.now();
+                    
+                    if (now - lastAccessTimestamp < ACCESS_DURATION_MS) {
+                        needsLogin = false; // Access granted by recent timestamp
+                    }
+                }
+            } catch (e) {
+                // If localStorage fails for any reason (e.g., security settings), we force login.
+                console.warn("localStorage is not available or readable. Login required.");
+                needsLogin = true; 
+            }
+
+            if (needsLogin) {
+                // Show the overlay, hide the main app content
+                app.style.display = 'none'; 
+                overlay.style.display = 'flex';
+                
+                // Set up "Enter" key listener for the password field
+                document.getElementById('password-input').addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        handleLogin();
+                    }
+                });
+            } else {
+                // Access granted immediately (timestamp is fresh)
+                overlay.style.display = 'none';
+                grantAccess();
+            }
+        }
+
+
+        // --- 1. Content Data ---
+        // Array containing the content for each of the 12 weeks.
+        const weeklyContent = [
+            // Week 0: (Placeholder for 1-based indexing)
+            null, 
+
+            // Week 1 Content
+            {
+                title: "Ground Zero",
+                html: `
+                    <p class="text-xl italic mb-6 text-accent-text">Hi Rainfall,</p>
+                    
+                    <p>
+                        I decided to write to you weekly till year's end when I might finally leave you and move on with my life (not sure yet).
+                    </p>
+                    <p class="mt-4">
+                        I will not be sending you links every week, but I'll make sure to publish a new one every week, so check back every Monday to see the next week's letter.
+                        I wanted to recap what happened this week but all I can say is “it's well” and “the LORD is in control.”
+                    </p>
+                    
+                    <hr class="elegant-hr">
+                    
+                    <p>
+                        Last week was such a time for you, how did it go? I'm glad you have recovered from both the injection and malaria.
+                        Also, your skin is healing — that's an answered prayer — thank God.
+                        Your productivity this week is so beautiful, totally love to see it. It's already making sense, hope you are willing to do more.
+                    </p>
+                    <p class="mt-4">
+                        Even if you don’t see it now, I push you because I don’t ever want to look back one day and realize the person I started this journey with isn’t there anymore.
+                    </p>
+                    <p class="mt-4">
+                        That’s why I drag you, remind you, and sometimes even annoy you, because I believe in where we’re heading. I’m not perfect and I’m not even there yet myself, but I know we’ll make it. We’ll pull through.
+                    </p>
+
+                    <hr class="elegant-hr">
+                    
+                    <p class="text-center italic">
+                        I pray that you may enjoy good health and that all may go well with you, even as your soul is getting along well.
+                        <br><em class="not-italic text-sm text-gray-600">3 John 1:2</em>
+                    </p>
+                    
+                    <p class="mt-8 text-right text-accent-text italic text-xl">
+                        Warmest regards,
+                    </p>
+                    
+                    <p class="mt-2 text-right text-2xl font-semibold text-accent-text">
+                        Sunshine
+                    </p>
+                `
+            },
+
+            // Week 2 to Week 12: Coming Soon placeholders
+            { title: "", html: `<h2 class="text-3xl font-bold text-accent-text mb-3 text-center">Coming Soon!</h2><p class="text-gray-600 text-center text-lg">The content for Week 2 is being crafted with care and will be delivered when the time is just right.</p>` },
+            { title: "", html: `<h2 class="text-3xl font-bold text-accent-text mb-3 text-center">Coming Soon!</h2><p class="text-gray-600 text-center text-lg">The content for Week 3 is being crafted with care and will be delivered when the time is just right.</p>` },
+            { title: "", html: `<h2 class="text-3xl font-bold text-accent-text mb-3 text-center">Coming Soon!</h2><p class="text-gray-600 text-center text-lg">The content for Week 4 is being crafted with care and will be delivered when the time is just right.</p>` },
+            { title: "", html: `<h2 class="text-3xl font-bold text-accent-text mb-3 text-center">Coming Soon!</h2><p class="text-gray-600 text-center text-lg">The content for Week 5 is being crafted with care and will be delivered when the time is just right.</p>` },
+            { title: "", html: `<h2 class="text-3xl font-bold text-accent-text mb-3 text-center">Coming Soon!</h2><p class="text-gray-600 text-center text-lg">The content for Week 6 is being crafted with care and will be delivered when the time is just right.</p>` },
+            { title: "", html: `<h2 class="text-3xl font-bold text-accent-text mb-3 text-center">Coming Soon!</h2><p class="text-gray-600 text-center text-lg">The content for Week 7 is being crafted with care and will be delivered when the time is just right.</p>` },
+            { title: "", html: `<h2 class="text-3xl font-bold text-accent-text mb-3 text-center">Coming Soon!</h2><p class="text-gray-600 text-center text-lg">The content for Week 8 is being crafted with care and will be delivered when the time is just right.</p>` },
+            { title: "", html: `<h2 class="text-3xl font-bold text-accent-text mb-3 text-center">Coming Soon!</h2><p class="text-gray-600 text-center text-lg">The content for Week 9 is being crafted with care and will be delivered when the time is just right.</p>` },
+            { title: "", html: `<h2 class="text-3xl font-bold text-accent-text mb-3 text-center">Coming Soon!</h2><p class="text-gray-600 text-center text-lg">The content for Week 10 is being crafted with care and will be delivered when the time is just right.</p>` },
+            { title: "", html: `<h2 class="text-3xl font-bold text-accent-text mb-3 text-center">Coming Soon!</h2><p class="text-gray-600 text-center text-lg">The content for Week 11 is being crafted with care and will be delivered when the time is just right.</p>` },
+            { title: "", html: `<h2 class="text-3xl font-bold text-accent-text mb-3 text-center">Coming Soon!</h2><p class="text-gray-600 text-center text-lg">The content for Week 12 is being crafted with care and will be delivered when the time is just right.</p>` },
+        ];
+
+
+        // --- 2. Core Navigation Functions ---
+
+        function updateButtonStyles(weekNumber) {
+            for (let i = 1; i <= 12; i++) {
+                const btn = document.getElementById(`week-${i}-btn`);
+                if (btn) {
+                    // Remove all active/inactive classes first
+                    btn.className = 'w-full py-2 rounded-lg transition duration-200 text-sm font-semibold shadow-md';
+                    
+                    if (i === weekNumber) {
+                        // Active week styling
+                        btn.className += ' bg-accent-text text-white ring-2 ring-light-accent hover:bg-opacity-90';
+                    } else {
+                        // Inactive/Future week styling
+                        btn.className += ' bg-light-accent text-accent-text hover:bg-light-accent/80';
+                    }
+                }
+            }
+        }
+
+        function loadWeek(weekNumber) {
+            if (weekNumber < 1 || weekNumber > 12) return; // Safety check
+
+            const contentDisplay = document.getElementById('content-display');
+            const weekTitleHeader = document.getElementById('week-title');
+            const content = weeklyContent[weekNumber];
+
+            // 1. Update the Header Title
+            const titleText = `Week ${weekNumber}: ${content.title}`;
+            weekTitleHeader.textContent = titleText;
+            
+            // 2. Update the main content
+            contentDisplay.innerHTML = content.html;
+
+            // 3. Update the Navigation Button Styles
+            updateButtonStyles(weekNumber);
+        }
+
+        function createNavigationButtons() {
+            const nav = document.getElementById('week-nav');
+            if (!nav) return;
+
+            for (let i = 1; i <= 12; i++) {
+                const button = document.createElement('button');
+                button.id = `week-${i}-btn`;
+                button.textContent = `Week ${i}`;
+                button.className = 'w-full py-2 rounded-lg transition duration-200 text-sm font-semibold shadow-md'; // Base classes
+                button.setAttribute('data-week', i);
+                button.onclick = () => loadWeek(i);
+                nav.appendChild(button);
+            }
+        }
+        
+        // --- 3. Feedback Initialization and Logic ---
+
+        function initializeFeedback() {
+            // EmailJS init with your provided key
+            emailjs.init("igWJkDe7jvbsQjJOq");
+
+            // Create the floating button element dynamically
+            const feedbackBtn = document.createElement("button");
+            feedbackBtn.id = "feedback-btn";
+            // Using Lucide-react equivalent icon for Chat/Message bubble
+            feedbackBtn.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
+                    <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>
+                </svg>
+                Feedback
+            `;
+            // Tailwind classes for the floating button
+            feedbackBtn.className = "fixed bottom-5 right-5 z-40 bg-accent-text text-white p-3 rounded-full shadow-lg hover:shadow-xl transition duration-300 flex items-center text-sm font-semibold cursor-pointer";
+            document.body.appendChild(feedbackBtn);
+
+            const feedbackPopup = document.getElementById("feedback-modal");
+            const closeFeedback = document.getElementById("closeFeedback");
+            const sendFeedback = document.getElementById("sendFeedback");
+            
+            // Show/Hide listeners
+            feedbackBtn.addEventListener("click", () => {
+                feedbackPopup.classList.remove('hidden');
+            });
+
+            closeFeedback.addEventListener("click", () => {
+                feedbackPopup.classList.add('hidden');
+            });
+
+            sendFeedback.addEventListener("click", () => {
+                const nameInput = document.getElementById("user_name");
+                const messageInput = document.getElementById("message");
+                const name = nameInput.value;
+                const message = messageInput.value;
+
+                if (!name || !message) {
+                    showStatusMessage("Please fill in both your name and message.", false);
+                    return;
+                }
+
+                // Disable button and show loading state
+                sendFeedback.textContent = "Sending...";
+                sendFeedback.disabled = true;
+
+                emailjs.send("service_x360", "template_fbdv0mh", {
+                    user_name: name,
+                    message: message,
+                })
+                .then(() => {
+                    showStatusMessage("Feedback sent successfully!", true);
+                    feedbackPopup.classList.add('hidden');
+                    // Clear inputs
+                    nameInput.value = "";
+                    messageInput.value = "";
+                })
+                .catch((error) => {
+                    console.error("EmailJS Error:", error);
+                    showStatusMessage("Failed to send feedback. Please try again later.", false);
+                })
+                .finally(() => {
+                    sendFeedback.textContent = "Send";
+                    sendFeedback.disabled = false;
+                });
+            });
+        }
+
+
+        // --- 4. Initialization ---
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check password access first. If access is granted, it calls grantAccess() 
+            // which, in turn, calls createNavigationButtons() and initializeFeedback().
+            checkAccess();
+        });
+    </script>
 </body>
 </html>
