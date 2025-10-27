@@ -199,7 +199,8 @@
                 
                 // 3. Initialize content
                 createNavigationButtons();
-                loadWeek(1);
+                // Load Week 2 immediately since it's the latest content
+                loadWeek(2); 
                 
                 // 4. Initialize Feedback button/logic (moved from DOMContentLoaded to ensure auth is complete)
                 initializeFeedback();
@@ -322,8 +323,61 @@
                 `
             },
 
-            // Week 2 to Week 12: Coming Soon placeholders
-            { title: "", html: `<h2 class="text-3xl font-bold text-accent-text mb-3 text-center">Coming Soon!</h2><p class="text-gray-600 text-center text-lg">The content for Week 2 is being crafted with care and will be delivered when the time is just right.</p>` },
+            // Week 2 Content (NEWLY ADDED)
+            {
+                title: "Momentum",
+                html: `
+                    <p class="text-xl italic mb-6 text-accent-text">My Dearest Rainfall,</p>
+
+                    <p>
+                        Last week felt slow, but in a good way. It gave me time to be productive. Honestly, it turned out to be one of my best weeks in Uptober, even though it was quite demanding.
+                    </p>
+                    <p class="mt-4">
+                        I dedicated most of my week to learning **CSS**, and I’ve seen noticeable progress. My X engagement improved too, though it slowed down a bit over the weekend. I’m confident it’ll pick up again next week.
+                    </p>
+                    <p class="mt-4">
+                        We had to employ our muscles to work for the LORD on Saturday. The church building activities are going great, members are very supportive. I loved how everyone showed up for the work.
+                    </p>
+                    <p class="mt-4">
+                        And just when the week was about to end, my cousin surprised us with a midnight visit — completely unexpected, like a thief in the night. But she didn’t come alone. She brought a little version of herself, Prudent, who’s been the center of our joy today.
+                    </p>
+
+                    <hr class="elegant-hr">
+
+                    <p>
+                        I daresay you had one of the best weeks too. Reuniting with a friend after so long is always special, and I’m really glad she came for you.
+                    </p>
+                    <p class="mt-4">
+                        Today in church, as I listened to the sermon, I found myself reflecting on how much my spiritual life has grown through our weekly Bible studies. It’s one of those things we do together that truly strengthens and transforms me, and I’m always grateful for it.
+                    </p>
+                    <p class="mt-4">
+                        I received your images in good faith. Every time I see you, I’m reminded that God’s works are truly wonderful. Remember, you are fearfully and wonderfully made.
+                    </p>
+                    <p class="mt-4">
+                        Above all, you are **beautiful** — both in the sight of the LORD and in the eyes of men. Never spend a single moment looking down on yourself or doubting your worth. You are His masterpiece, and that alone is more than enough.
+                    </p>
+                    <p class="mt-4">
+                        Please extend my warm regards to Dad, Mom, and Friendy. May the LORD be with them all, and may His grace continually rest upon you and your household.
+                    </p>
+
+                    <hr class="elegant-hr">
+
+                    <p class="text-center italic">
+                        And my God will meet all your needs according to the riches of his glory in Christ Jesus.
+                        <br><em class="not-italic text-sm text-gray-600">Philippians 4:19</em>
+                    </p>
+
+                    <p class="mt-8 text-right text-accent-text italic text-xl">
+                        With endless love,
+                    </p>
+
+                    <p class="mt-2 text-right text-2xl font-semibold text-accent-text">
+                        Sunshine
+                    </p>
+                `
+            },
+
+            // Week 3 to Week 12: Coming Soon placeholders
             { title: "", html: `<h2 class="text-3xl font-bold text-accent-text mb-3 text-center">Coming Soon!</h2><p class="text-gray-600 text-center text-lg">The content for Week 3 is being crafted with care and will be delivered when the time is just right.</p>` },
             { title: "", html: `<h2 class="text-3xl font-bold text-accent-text mb-3 text-center">Coming Soon!</h2><p class="text-gray-600 text-center text-lg">The content for Week 4 is being crafted with care and will be delivered when the time is just right.</p>` },
             { title: "", html: `<h2 class="text-3xl font-bold text-accent-text mb-3 text-center">Coming Soon!</h2><p class="text-gray-600 text-center text-lg">The content for Week 5 is being crafted with care and will be delivered when the time is just right.</p>` },
@@ -365,7 +419,7 @@
             const content = weeklyContent[weekNumber];
 
             // 1. Update the Header Title
-            const titleText = `Week ${weekNumber}: ${content.title}`;
+            const titleText = `Week ${weekNumber}: ${content.title || 'In Progress'}`;
             weekTitleHeader.textContent = titleText;
             
             // 2. Update the main content
